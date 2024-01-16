@@ -1,0 +1,70 @@
+import { Button, Divider } from "antd";
+import google from "../../../public/icons/google.svg";
+import iphone from "../../../public/icons/iphone.svg";
+
+const SocialButtons = () => {
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "30px",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "30px",
+        }}
+      >
+        <Button
+          type="primary"
+          style={{
+            backgroundColor: "#F0F5FA",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "11px",
+            borderRadius: "16px",
+            fontSize: "16px",
+            fontWeight: "500",
+            width: "255px",
+            height: "58px",
+            color: "#8A94A6",
+          }}
+        >
+          <img src={google} alt="GoogleIcon" />
+          Sing In with Google
+        </Button>
+        <Button
+          type="primary"
+          style={{
+            backgroundColor: "#F0F5FA",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "11px",
+            borderRadius: "16px",
+            fontSize: "16px",
+            fontWeight: "500",
+            width: "255px",
+            height: "58px",
+            color: "#8A94A6",
+          }}
+        >
+          <img src={iphone} alt="IphoneIcon" /> Sign In with Apple ID
+        </Button>
+      </div>
+      <Divider
+        style={{
+          fontSize: "20px",
+          fontWeight: "500",
+          color: "#B0B7C3",
+          marginTop: "30px",
+          marginBottom: "30px",
+        }}
+      >
+        OR
+      </Divider>
+    </>
+  );
+};
+
+export default SocialButtons;
