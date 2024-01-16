@@ -9,23 +9,26 @@ import {
 } from "antd";
 import at from "../../../public/icons/at.svg";
 import lock from "../../../public/icons/lock.svg";
+import smile from "../../../public/icons/smile.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-type SingInType = {
-  email?: string;
-  password?: string;
+type SingUpType = {
+  email: string;
+  password: string;
+  name: string;
 };
 
-const SignInForm: React.FC = () => {
+const SignUpForm: React.FC = () => {
   const [checked, setChecked] = useState(false);
+
   const [form] = Form.useForm();
 
-  const onFinish = (value: SingInType) => {
-    // api will add here
+  const onFinish = (value: SingUpType) => {
+    // api here
     const data = { ...value, checked };
-    console.log(data);
-    message.success("Sign In Successful!");
+    console.log(value, "data", data);
+    message.success("Sign Up Successful!");
     form.resetFields();
   };
 
@@ -78,6 +81,40 @@ const SignInForm: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
+        name="name"
+        rules={[
+          {
+            required: true,
+            message: (
+              <p
+                style={{
+                  marginTop: "16px",
+                  marginBottom: "15px",
+                  color: "#FF5630",
+                }}
+              >
+                "Please enter you name."
+              </p>
+            ),
+          },
+          { type: "string", warningOnly: true },
+        ]}
+      >
+        <Input
+          prefix={<img style={{ marginRight: "12px" }} src={smile} alt="at" />}
+          style={{
+            height: "58px",
+            fontWeight: 500,
+            fontSize: "16px",
+            borderRadius: "16px",
+            boxShadow: "0px 6px 8px 0px rgba(255, 86, 48, 0.10)",
+            paddingLeft: "18px",
+          }}
+          placeholder="Your name"
+          type="string"
+        />
+      </Form.Item>
+      <Form.Item
         name="password"
         rules={[
           {
@@ -113,6 +150,62 @@ const SignInForm: React.FC = () => {
           type="password"
         />
       </Form.Item>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          marginBottom: "30px",
+        }}
+      >
+        <p
+          style={{
+            width: "68px",
+            height: "4px",
+            borderRadius: "2px",
+            background: "#38CB89",
+          }}
+        ></p>
+        <p
+          style={{
+            width: "68px",
+            height: "4px",
+            borderRadius: "2px",
+            background: "#38CB89",
+          }}
+        ></p>
+        <p
+          style={{
+            width: "68px",
+            height: "4px",
+            borderRadius: "2px",
+            background: "#38CB89",
+          }}
+        ></p>
+        <p
+          style={{
+            width: "68px",
+            height: "4px",
+            borderRadius: "2px",
+            background: "#38CB89",
+          }}
+        ></p>
+        <p
+          style={{
+            width: "68px",
+            height: "4px",
+            borderRadius: "2px",
+            background: "#38CB89",
+          }}
+        ></p>
+        <p
+          style={{
+            width: "68px",
+            height: "4px",
+            borderRadius: "2px",
+            background: "#F3F3F3",
+          }}
+        ></p>
+      </div>
       <Checkbox
         style={{
           fontSize: "16px",
@@ -123,7 +216,7 @@ const SignInForm: React.FC = () => {
         }}
         onChange={onChange}
       >
-        Remember Me
+        I agree to the Terms & Conditions
       </Checkbox>
       <Form.Item>
         <Space>
@@ -142,7 +235,7 @@ const SignInForm: React.FC = () => {
             type="primary"
             htmlType="submit"
           >
-            Sign In
+            Sign Up
           </Button>
         </Space>
       </Form.Item>
@@ -155,13 +248,13 @@ const SignInForm: React.FC = () => {
           textAlign: "center",
         }}
       >
-        Don’t have an account yet?{" "}
-        <Link to={"/sign-up"} style={{ color: "#377DFF" }}>
-          Sign Up
+        Already have an account?{" "}
+        <Link to={"/sign-in"} style={{ color: "#377DFF" }}>
+          Sign In
         </Link>
       </p>
     </Form>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;
