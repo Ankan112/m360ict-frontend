@@ -49,7 +49,10 @@ const SocialButtons = () => {
             color: "#8A94A6",
           }}
         >
-          <img src={iphone} alt="IphoneIcon" /> Sign In with Apple ID
+          <div style={{ marginTop: "2px" }}>
+            <img src={iphone} alt="IphoneIcon" />
+          </div>{" "}
+          Sign In with Apple ID
         </Button>
       </div>
       <Divider
