@@ -1,4 +1,5 @@
 import AuthTitle from "../../components/shared/AuthTitle";
+import SignInForm from "../../components/shared/SignInForm";
 import SocialButtons from "../../components/shared/SocialButtons";
 
 const SignIn = () => {
@@ -12,7 +13,7 @@ const SignIn = () => {
         height: "100vh",
       }}
     >
-      <div>
+      <div style={{ width: "540px" }}>
         {/* Auth title component */}
         <AuthTitle
           title="Sign In"
@@ -20,6 +21,8 @@ const SignIn = () => {
         />
         {/* social buttons component */}
         <SocialButtons />
+        {/* SignIn form */}
+        <SignInForm />
       </div>
     </div>
   );
