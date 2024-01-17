@@ -211,8 +211,6 @@ const SignUpForm: React.FC = () => {
           fontSize: "16px",
           fontWeight: 500,
           color: "#B0B7C3",
-          //   height: "28px",
-          //   width: "28px",
         }}
         onChange={onChange}
       >
