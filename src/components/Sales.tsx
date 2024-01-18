@@ -1,7 +1,15 @@
 const Sales = () => {
   return (
     <div>
-      <h1>this is sales</h1>
+      <h1
+        style={{
+          fontSize: "23px",
+          fontWeight: 600,
+          color: "#323B4B",
+        }}
+      >
+        Sales Data
+      </h1>
     </div>
   );
 };
