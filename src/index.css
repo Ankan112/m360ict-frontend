@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
+/* common style for browser */
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +8,7 @@
   font-family: "Inter", sans-serif;
 }
 
+/* main container for webpage */
 .main-container {
   width: 90%;
   max-width: 1440px;
