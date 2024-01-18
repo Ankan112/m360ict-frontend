@@ -4,8 +4,9 @@ import menu from "./assets/icons/menu.svg";
 import sales from "./assets/icons/sales.svg";
 import users from "./assets/icons/user.svg";
 import { Link } from "react-router-dom";
+import DashboardHeader from "./components/DashboardHeader";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const items = [
   {
@@ -41,7 +42,7 @@ const items = [
 
 function App() {
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
   return (
     <div className="main-container">
@@ -106,23 +107,20 @@ function App() {
             items={items}
           />
         </Sider>
-        <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }}></Header>
-          <Content style={{ margin: "24px 16px 0" }}>
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              content
-            </div>
+        <Layout style={{ background: "white" }}>
+          <Header style={{ padding: 0, background: colorBgContainer }}>
+            <DashboardHeader />
+          </Header>
+          <Content
+            style={{
+              marginTop: "48px",
+              paddingLeft: "38px",
+              paddingRight: "35px",
+              background: "white",
+            }}
+          >
+            <div>content</div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>
-            Ant Design ©{new Date().getFullYear()} Created by Ant UED
-          </Footer>
         </Layout>
       </Layout>
     </div>
