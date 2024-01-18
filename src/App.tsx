@@ -3,7 +3,7 @@ import paper from "./assets/icons/paper.svg";
 import menu from "./assets/icons/menu.svg";
 import sales from "./assets/icons/sales.svg";
 import users from "./assets/icons/user.svg";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import DashboardHeader from "./components/DashboardHeader";
 
 const { Header, Content, Sider } = Layout;
@@ -40,7 +40,7 @@ const items = [
   ),
 }));
 
-function App() {
+const App = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -119,12 +119,14 @@ function App() {
               background: "white",
             }}
           >
-            <div>content</div>
+            <div>
+              <Outlet />
+            </div>
           </Content>
         </Layout>
       </Layout>
     </div>
   );
-}
+};
 
 export default App;
