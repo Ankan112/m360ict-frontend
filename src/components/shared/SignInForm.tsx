@@ -7,8 +7,8 @@ import {
   message,
   Space,
 } from "antd";
-import at from "../../../public/icons/at.svg";
-import lock from "../../../public/icons/lock.svg";
+import at from "../../assets/icons/at.svg";
+import lock from "../../assets/icons/lock.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 

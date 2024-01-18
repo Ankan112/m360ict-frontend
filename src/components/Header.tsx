@@ -1,4 +1,4 @@
-import paper from "../../public/icons/paper.svg";
+import paper from "../assets/icons/paper.svg";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
