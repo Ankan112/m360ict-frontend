@@ -9,8 +9,9 @@ import {
 } from "antd";
 import at from "../../assets/icons/at.svg";
 import lock from "../../assets/icons/lock.svg";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLoginMutation } from "../../redux/users/usersApi";
 
 type SingInType = {
   email?: string;
@@ -20,13 +21,12 @@ type SingInType = {
 const SignInForm: React.FC = () => {
   const [checked, setChecked] = useState(false);
   const [form] = Form.useForm();
-
+  const [login, { data: loginData, isSuccess }] = useLoginMutation();
+  const navigate = useNavigate();
   const onFinish = (value: SingInType) => {
-    // api will add here
     const data = { ...value, checked };
     console.log(data);
-    message.success("Sign In Successful!");
-    form.resetFields();
+    login(value);
   };
 
   const onFinishFailed = () => {
@@ -35,6 +35,18 @@ const SignInForm: React.FC = () => {
   const onChange: CheckboxProps["onChange"] = (e) => {
     setChecked(e.target.checked);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      message.success("Sign In Successful!");
+      if (loginData?.token) {
+        localStorage.setItem("accessToken", loginData?.token);
+      }
+      form.resetFields();
+
+      navigate("/dashboard");
+    }
+  }, [isSuccess, form, loginData?.token, navigate]);
   return (
     <Form
       form={form}

@@ -3,6 +3,7 @@ import type { TableColumnsType } from "antd";
 import more from "../../assets/icons/more.svg";
 import user from "../../assets/icons/image.png";
 import { ReactElement } from "react";
+import { useGetAllUsersQuery } from "../../redux/users/usersApi";
 
 interface DataType {
   id: number;
@@ -18,7 +19,8 @@ const columns: TableColumnsType<DataType> = [
   },
   {
     title: "NAME",
-    dataIndex: "name",
+    // dataIndex: "avatar",
+    dataIndex: `first_name`,
   },
   {
     title: "EMAIL",
@@ -31,174 +33,176 @@ const columns: TableColumnsType<DataType> = [
 ];
 
 //! Fake Data
-const data: DataType[] = [
-  {
-    id: 1,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        John Doe
-      </div>
-    ),
-    email: "john@example.com",
-    options: <img src={more} alt="" />,
-  },
-  {
-    id: 2,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        Jane Smith
-      </div>
-    ),
-    email: "jane@example.com",
-    options: <img src={more} alt="" />,
-  },
-  {
-    id: 3,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        Bob Johnson
-      </div>
-    ),
-    email: "bob@example.com",
-    options: <img src={more} alt="" />,
-  },
-  {
-    id: 4,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        Alice Williams
-      </div>
-    ),
-    email: "alice@example.com",
-    options: <img src={more} alt="" />,
-  },
-  {
-    id: 5,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        Charlie Brown
-      </div>
-    ),
-    email: "charlie@example.com",
-    options: <img src={more} alt="" />,
-  },
-  {
-    id: 6,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        Eva Davis
-      </div>
-    ),
-    email: "eva@example.com",
-    options: <img src={more} alt="" />,
-  },
-  {
-    id: 7,
-    name: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            borderRadius: "15px",
-            marginRight: "20px",
-          }}
-          src={user}
-          alt=""
-        />
-        New User
-      </div>
-    ),
-    email: "newuser@example.com",
-    options: <img src={more} alt="" />,
-  },
-];
-
+// const fateData: DataType[] = [
+//   {
+//     id: 1,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         John Doe
+//       </div>
+//     ),
+//     email: "john@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+//   {
+//     id: 2,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         Jane Smith
+//       </div>
+//     ),
+//     email: "jane@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+//   {
+//     id: 3,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         Bob Johnson
+//       </div>
+//     ),
+//     email: "bob@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+//   {
+//     id: 4,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         Alice Williams
+//       </div>
+//     ),
+//     email: "alice@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+//   {
+//     id: 5,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         Charlie Brown
+//       </div>
+//     ),
+//     email: "charlie@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+//   {
+//     id: 6,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         Eva Davis
+//       </div>
+//     ),
+//     email: "eva@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+//   {
+//     id: 7,
+//     name: (
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//         }}
+//       >
+//         <img
+//           style={{
+//             borderRadius: "15px",
+//             marginRight: "20px",
+//           }}
+//           src={user}
+//           alt=""
+//         />
+//         New User
+//       </div>
+//     ),
+//     email: "newuser@example.com",
+//     options: <img src={more} alt="" />,
+//   },
+// ];
 const UsersTable: React.FC = () => {
+  const { data } = useGetAllUsersQuery({ page: 2 });
+  console.log(data?.data);
+
   return (
     <div>
-      <Table bordered={false} columns={columns} dataSource={data} />
+      <Table bordered={false} columns={columns} dataSource={data?.data} />
     </div>
   );
 };

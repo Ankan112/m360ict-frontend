@@ -1,6 +1,6 @@
 import { Button, Divider } from "antd";
 import google from "../../assets/icons/google.svg";
-import iphone from "../../assets/icons/at.svg";
+import iphone from "../../assets/icons/iphone.svg";
 
 const SocialButtons = () => {
   return (

@@ -10,8 +10,9 @@ import {
 import at from "../../assets/icons/at.svg";
 import lock from "../../assets/icons/lock.svg";
 import smile from "../../assets/icons/smile.svg";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSignUpMutation } from "../../redux/users/usersApi";
 
 type SingUpType = {
   email: string;
@@ -21,15 +22,12 @@ type SingUpType = {
 
 const SignUpForm: React.FC = () => {
   const [checked, setChecked] = useState(false);
-
+  const [signUp, { data: signUpData, isSuccess }] = useSignUpMutation();
   const [form] = Form.useForm();
-
+  const navigate = useNavigate();
   const onFinish = (value: SingUpType) => {
-    // api here
-    const data = { ...value, checked };
-    console.log(value, "data", data);
-    message.success("Sign Up Successful!");
-    form.resetFields();
+    signUp({ email: value.email, password: value.password });
+    console.log(checked);
   };
 
   const onFinishFailed = () => {
@@ -38,6 +36,17 @@ const SignUpForm: React.FC = () => {
   const onChange: CheckboxProps["onChange"] = (e) => {
     setChecked(e.target.checked);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      message.success("Sign Up Successful!");
+      if (signUpData?.token) {
+        localStorage.setItem("accessToken", signUpData?.token);
+      }
+      form.resetFields();
+
+      navigate("/dashboard");
+    }
+  }, [isSuccess, form, signUpData?.token, navigate]);
   return (
     <Form
       form={form}
