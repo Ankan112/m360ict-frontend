@@ -1,8 +1,8 @@
 import { Table } from "antd";
 import type { TableColumnsType } from "antd";
-import more from "../../assets/icons/more.svg";
-import user from "../../assets/icons/image.png";
-import { ReactElement } from "react";
+// import more from "../../assets/icons/more.svg";
+// import user from "../../assets/icons/image.png";
+import { ReactElement, useState } from "react";
 import { useGetAllUsersQuery } from "../../redux/users/usersApi";
 
 interface DataType {
@@ -19,7 +19,6 @@ const columns: TableColumnsType<DataType> = [
   },
   {
     title: "NAME",
-    // dataIndex: "avatar",
     dataIndex: `first_name`,
   },
   {
@@ -197,12 +196,25 @@ const columns: TableColumnsType<DataType> = [
 //   },
 // ];
 const UsersTable: React.FC = () => {
-  const { data } = useGetAllUsersQuery({ page: 2 });
-  console.log(data?.data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data } = useGetAllUsersQuery({ page: currentPage });
+  // console.log(data);
 
   return (
     <div>
-      <Table bordered={false} columns={columns} dataSource={data?.data} />
+      <Table
+        bordered={false}
+        columns={columns}
+        pagination={{
+          current: currentPage,
+          pageSize: 6,
+          total: data?.total,
+          onChange: (total_pages) => {
+            setCurrentPage(total_pages);
+          },
+        }}
+        dataSource={data?.data}
+      />
     </div>
   );
 };
