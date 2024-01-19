@@ -5,11 +5,16 @@ import SignUp from "../pages/Sign-up/SignUp";
 import Dashboard from "../components/Dashboard";
 import Users from "../components/Users";
 import Sales from "../components/Sales";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/dashboard",
-    element: <App />,
+    element: (
+      <PrivateRoute>
+        <App />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
